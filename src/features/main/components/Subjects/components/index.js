@@ -1,3 +1,5 @@
+//trang nay de render warehouse
+
 import React, { useState, useEffect } from "react";
 import SubjectServices from "../../../../../api/SubjectServices";
 import { List, Card, Spin } from "antd";
