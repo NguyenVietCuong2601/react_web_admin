@@ -24,9 +24,10 @@ function Users(props) {
   const loadData = () => {
     UsersServices.getUsers()
       .then((res) => {
-        setData(res[0].data);
+        setData(res[0]);
         setLoading(false);
-        setResult(res[0].data);
+        setResult(res[0]);
+        console.log(data)
       })
       .catch((err) => {
         console.log("error", err);
@@ -109,12 +110,12 @@ function Users(props) {
     },
     {
       title: "Username",
-      dataIndex: "username",
-      key: "username",
+      dataIndex: "name",
+      key: "name",
       sorter: {
-        compare: (a, b) => a.username.length - b.username.length,
+        compare: (a, b) => a.name.length - b.name.length,
       },
-      render: (username) => <div>{username}</div>,
+      render: (name) => <div>{name}</div>,
     },
     {
       title: "Email",
@@ -124,15 +125,15 @@ function Users(props) {
     },
     {
       title: "Phone",
-      dataIndex: "phoneNumber",
-      key: "phoneNumber",
-      render: (phoneNumber) => `${phoneNumber ? phoneNumber : "None"}`,
+      dataIndex: "phone",
+      key: "phone",
+      render: (phone) => `${phone ? phone : "None"}`,
     },
     {
-      title: "Birthday",
-      dataIndex: "dateOfBirth",
-      key: "dateOfBirth",
-      render: (dateOfBirth) => `${moment(dateOfBirth).format("L")}`,
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      render: (address) => `${address ? address : "None"}`,
     },
     {
       title: "Role",
@@ -154,24 +155,6 @@ function Users(props) {
         return (
           <Tag color={color} key={activeStatus}>
             {activeStatus.toUpperCase()}
-          </Tag>
-        );
-      },
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => {
-        let color;
-        const activeStatus =
-          status === "INACTIVE" ? "INACTIVE" : status === "ACTIVE" && "ACTIVE";
-        if (activeStatus === "INACTIVE") {
-          color = "#6d4c41";
-        } else color = "#ff5722";
-        return (
-          <Tag color={color} key={activeStatus}>
-            {activeStatus}
           </Tag>
         );
       },
@@ -209,30 +192,6 @@ function Users(props) {
             <Button danger disabled type="primary" icon={<DeleteOutlined />} />
           </Space>
         ),
-    },
-    {
-      title: "Activate / Deactivate",
-      key: "Activate / Deactivate",
-      align: "center",
-      responsive: ["lg"],
-      render: (record) => (
-        <Button
-          loading={loading}
-          disabled={loading}
-          style={{
-            backgroundColor:
-              record.status === "INACTIVE" ? "#4caf50" : "#263238",
-            color: "white",
-            marginHorizontal: 50,
-          }}
-          onClick={() => {
-            const status = record.status === "INACTIVE" ? "ACTIVE" : "INACTIVE";
-            onToggleStatus(record.id, status);
-          }}
-        >
-          {record.status === "INACTIVE" ? "ACTIVATE" : "DEACTIVATE"}
-        </Button>
-      ),
     },
   ];
   return (

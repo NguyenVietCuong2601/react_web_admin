@@ -4,15 +4,16 @@ function getUsers() {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-      .get("http://14.245.65.138:9090/api/edu/v1/user", {
+      .get("https://managewarehouse.herokuapp.com/users?limit=10", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
         const data = [];
-        data.push(res);
+        data.push(res.data.data.users);
         resolve(data);
+        console.log(data)
       })
       .catch((error) => {
         console.log(error);

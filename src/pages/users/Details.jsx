@@ -19,11 +19,11 @@ export default function Details(props) {
         title={
           <div>
             <Avatar
-              src={props.user.photo}
-              icon={props.user.photo === null && <UserOutlined />}
+              src={props.user.image}
+              icon={props.user.image === null && <UserOutlined />}
             />{" "}
             &nbsp;
-            {props.user.username}
+            {props.user.name}
           </div>
         }
         placement="right"
@@ -35,7 +35,7 @@ export default function Details(props) {
           <Col>
             <DescriptionItem
               title="Full Name"
-              content={`${props.user.firstName} ${props.user.lastName}`}
+              content={`${props.user.name}`}
             />
           </Col>
         </Row>
@@ -70,7 +70,7 @@ export default function Details(props) {
           <Col span={12}>
             <DescriptionItem
               title="Phone Number"
-              content={props.user.phoneNumber}
+              content={props.user.phone}
             />
           </Col>
         </Row>
