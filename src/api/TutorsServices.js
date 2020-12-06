@@ -1,3 +1,5 @@
+//trnag nay de render item
+
 import axios from "axios";
 
 export const getAllTutors = async () => {

@@ -159,24 +159,6 @@ function Users(props) {
         );
       },
     },
-    // {
-    //   title: "Status",
-    //   dataIndex: "status",
-    //   key: "status",
-    //   render: (status) => {
-    //     let color;
-    //     const activeStatus =
-    //       status === "INACTIVE" ? "INACTIVE" : status === "ACTIVE" && "ACTIVE";
-    //     if (activeStatus === "INACTIVE") {
-    //       color = "#6d4c41";
-    //     } else color = "#ff5722";
-    //     return (
-    //       <Tag color={color} key={activeStatus}>
-    //         {activeStatus}
-    //       </Tag>
-    //     );
-    //   },
-    // },
     {
       title: "Action",
       key: "action",
@@ -211,30 +193,7 @@ function Users(props) {
           </Space>
         ),
     },
-    // {
-    //   title: "Activate / Deactivate",
-    //   key: "Activate / Deactivate",
-    //   align: "center",
-    //   responsive: ["lg"],
-    //   render: (record) => (
-    //     <Button
-    //       loading={loading}
-    //       disabled={loading}
-    //       style={{
-    //         backgroundColor:
-    //           record.status === "INACTIVE" ? "#4caf50" : "#263238",
-    //         color: "white",
-    //         marginHorizontal: 50,
-    //       }}
-    //       onClick={() => {
-    //         const status = record.status === "INACTIVE" ? "ACTIVE" : "INACTIVE";
-    //         onToggleStatus(record.id, status);
-    //       }}
-    //     >
-    //       {record.status === "INACTIVE" ? "ACTIVATE" : "DEACTIVATE"}
-    //     </Button>
-    //   ),
-    // },
+    
   ];
   return (
     <>
