@@ -33,7 +33,7 @@ export default function Details(props) {
       >
         <Row>
           <Col>
-            <img className="photo-avatar" src={props.user.image} placement="" />
+            <img className="photo-avatar" src={props.user.image} />
           </Col>
         </Row>
         

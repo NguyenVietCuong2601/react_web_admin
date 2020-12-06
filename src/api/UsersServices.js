@@ -13,7 +13,6 @@ function getUsers() {
         const data = [];
         data.push(res.data.data.users);
         resolve(data);
-        console.log(data)
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +25,7 @@ function getDetailUser(id) {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-      .get(`http://14.245.65.138:9090/api/edu/v1/user/details/${id}`, {
+      .get(`https://managewarehouse.herokuapp.com/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +33,7 @@ function getDetailUser(id) {
       })
       .then((res) => {
         const data = [];
-        data.push(res);
+        data.push(res.data);
         resolve(data);
       })
       .catch((error) => {
@@ -46,9 +45,10 @@ function getDetailUser(id) {
 function createUser(createdUser) {
   return new Promise((resolve, reject) => {
     axios
-      .post("http://14.245.65.138:9090/api/auth/v1/user/register", createdUser)
+      .post("https://managewarehouse.herokuapp.com/users", createdUser)
       .then((res) => {
         resolve(res);
+        //console.log(res)
       })
       .catch((error) => {
         console.log(error);
@@ -60,14 +60,15 @@ function updateUser(id, updatedUser) {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-      .put(`http://14.245.65.138:9090/api/edu/v1/user/update`, updatedUser, {
-        params: { idUser: id },
+      .patch(`https://managewarehouse.herokuapp.com/users/${id}`, updatedUser, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        params: { idUser: id },
       })
       .then((res) => {
         resolve(res);
+        console.log(res)
       })
       .catch((error) => {
         reject(error);

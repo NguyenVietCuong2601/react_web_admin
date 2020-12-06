@@ -113,18 +113,18 @@ function UsersCreate(props) {
 
   const onFinish = (values) => {
     const createdUser = {
-      username: values.username,
+      name: values.name,
       password: values.password,
-      firstName: values.firstName,
-      lastName: values.lastName,
+      //firstName: values.firstName,
+      //lastName: values.lastName,
       address: values.address,
       email: values.email,
-      gender: values.gender,
-      photo: urlImg || null,
-      introduction: values.introduction,
-      phoneNumber: values.phoneNumber,
-      dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
-      authority: values.authority,
+      //gender: values.gender,
+      image: urlImg || null,
+      //introduction: values.introduction,
+      phone: values.phone,
+      //dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
+      //authority: values.authority,
     };
     onCreate(createdUser);
   };
@@ -145,26 +145,26 @@ function UsersCreate(props) {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name="firstName"
-            label="First Name"
+            name="name"
+            label="Name"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name="lastName"
             label="Last Name"
             rules={[{ required: true }]}
           >
             <Input />
-          </Form.Item>
-          <Form.Item
+          </Form.Item> */}
+          {/* <Form.Item
             name="username"
             label="User Name"
             rules={[{ min: 3, required: true }]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             name="password"
             label="Password"
@@ -181,7 +181,7 @@ function UsersCreate(props) {
           </Form.Item>
           <div className="upload-img">
             <label style={{ marginRight: 10 }}>Avatar:</label>
-            <div name="photo" className="avatar-uploader">
+            <div name="image" className="avatar-uploader">
               {urlImg ? (
                 <img
                   src={urlImg || "http://via.placeholder.com/300"}
@@ -198,7 +198,7 @@ function UsersCreate(props) {
             </div>
           </div>
 
-          <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+          {/* <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
             <Radio.Group>
               <Radio value={1}>Male</Radio>
               <Radio value={0}>Female</Radio>
@@ -224,10 +224,10 @@ function UsersCreate(props) {
             rules={[{ required: true }]}
           >
             <DatePicker format={dateFormat} />
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item
-            name="phoneNumber"
+            name="phone"
             label="Phone"
             rules={[
               { message: "Please input your phone number!", required: true },
@@ -242,9 +242,9 @@ function UsersCreate(props) {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="introduction" label="Introduction">
+          {/* <Form.Item name="introduction" label="Introduction">
             <Input.TextArea />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
             <Button
               type="primary"
