@@ -4,10 +4,11 @@ import {
   UserOutlined,
   FormOutlined,
   UnorderedListOutlined,
-  SnippetsOutlined,
-  BookOutlined,
-  TeamOutlined,
-  BellOutlined,
+  // SnippetsOutlined,
+  // BookOutlined,
+  // TeamOutlined,
+  // BellOutlined,
+  BankOutlined,
   BarcodeOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
@@ -26,8 +27,10 @@ export default function SideBar(props) {
     path === "/home/dashboard"
       ? 1
       : path === "/home/users"
-      ? 3
+      ? 2
       : path === "/home/products"
+      ? 3
+      : path === "/home/warehouse"
       // ? 2
       // : path === "/home/subjects"
       // ? 3
@@ -40,7 +43,7 @@ export default function SideBar(props) {
       // : path === "home/notifications"
       // ? 7
       // : path === "home/courses" 
-      && 8
+      && 4
   );
   console.log("key", selectedKey);
   const handleClick = (e) => {
@@ -86,6 +89,9 @@ export default function SideBar(props) {
           </Menu.Item>
           <Menu.Item key="3" icon={<BarcodeOutlined />}>
             <Link to="/home/products">Products</Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<BankOutlined />}>
+            <Link to="/home/warehouse">Warehouse</Link>
           </Menu.Item>
           {/* <Menu.Item key="3" icon={<SnippetsOutlined />}>
             <Link to="/home/subjects">Subjects</Link>

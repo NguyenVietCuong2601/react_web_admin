@@ -23,6 +23,11 @@ const routes = [
     path: "products",
     exact: true,
     component: "product/ProductsManagement/Products",
+  },
+  {
+    path: "warehouse",
+    exact: true,
+    component: "warehouse/WarehouseManagement/Warehouse",
   }
   // {
   //   path: "subjects",
