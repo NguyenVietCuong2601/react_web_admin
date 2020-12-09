@@ -11,6 +11,7 @@ function UsersUpdate(props) {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const _id = props.match.params.id;
+
   useEffect(() => {
     UsersServices.getDetailUser(_id)
       .then((res) => {
@@ -19,7 +20,7 @@ function UsersUpdate(props) {
       })
       .catch((err) => setLoading(false));
   }, [_id]);
-
+  
   const openNotificationWithIcon = (type, message, description) => {
     notification[type]({
       message: message,
@@ -32,7 +33,7 @@ function UsersUpdate(props) {
     wrapperCol: { span: 8 },
   };
   const validateMessages = {
-    required: "${label} is required!",
+    required: "${label} is requir ed!",
     types: {
       email: "${label} is not validate email!",
       number: "${label} is not a validate number!",
@@ -56,14 +57,15 @@ function UsersUpdate(props) {
   };
   const onFinish = (values) => {
     const updatedUser = {
-      firstName: values.firstName,
-      lastName: values.lastName,
+      name: values.name,
+      //lastName: values.lastName,
       address: values.address,
       email: values.email,
-      gender: values.gender === "male" ? 1 : 0,
-      introduction: values.introduction,
-      phoneNumber: values.phoneNumber,
-      dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
+      //gender: values.gender === "male" ? 1 : 0,
+      //introduction: values.introduction,
+      phone: values.phone,
+      //dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
+      image: data.image
     };
     onUpdate(data.id, updatedUser);
   };
@@ -79,52 +81,52 @@ function UsersUpdate(props) {
           onFinish={onFinish}
           validateMessages={validateMessages}
           initialValues={{
-            firstName: data.firstName,
-            lastName: data.lastName,
+            name: data.name,
+            //lastName: data.lastName,
             email: data.email,
-            gender: data.gender ? "male" : "female",
-            dateOfBirth: moment(data.dateOfBirth, "MMM Do YY"),
-            phoneNumber: data.phoneNumber,
-            address: data.address,
-            introduction: data.introduction,
+            //gender: data.gender ? "male" : "female",
+            //dateOfBirth: moment(data.dateOfBirth, "MMM Do YY"),
+            phone: data.phone,
+            address: data.address
+            //introduction: data.introduction,
           }}
         >
-          <Form.Item
-            name="firstName"
-            label="First Name"
+          <Form.Item 
+            name="name"
+            label="Name"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name="lastName"
             label="Last Name"
             rules={[{ required: true }]}
           >
             <Input />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             name="email"
             label="Email"
             rules={[{ type: "email", required: true }]}
           >
-            <Input />
+            <Input disabled/>
           </Form.Item>
-          <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+          {/* <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
             <Radio.Group>
               <Radio value="male">Male</Radio>
               <Radio value="female">Female</Radio>
             </Radio.Group>
-          </Form.Item>
-          <Form.Item
+          </Form.Item> */}
+          {/* <Form.Item
             name="dateOfBirth"
             label="Birthday"
             rules={[{ required: true }]}
           >
             <DatePicker format={dateFormat} />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
-            name="phoneNumber"
+            name="phone"
             label="Phone"
             rules={[
               { message: "Please input your phone number!", required: true },
@@ -139,9 +141,11 @@ function UsersUpdate(props) {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="introduction" label="Introduction">
+
+          {/* <Form.Item name="introduction" label="Introduction">
             <Input.TextArea />
-          </Form.Item>
+          </Form.Item> */}
+
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button
               type="primary"

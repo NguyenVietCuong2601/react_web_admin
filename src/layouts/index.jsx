@@ -66,7 +66,6 @@ function Layouts() {
                 </div>
               </BackTop>
             </Content>
-            <Footer>Created by Hieu Hoa Hong</Footer>
           </Layout>
         </Layout>
       </Router>

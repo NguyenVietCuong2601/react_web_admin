@@ -76,12 +76,12 @@ export default function Auth() {
               <div className="space-line"></div>
               <Paragraph style={{ color: "white" }}>
                 {" "}
-                Welcome to <strong>TutorsFinder</strong> administrator page.
+                Welcome to <strong>Warehouse Management</strong> administrator page.
               </Paragraph>
             </div>
             <div className="footer">
               <div className="social-contact">
-                <div className="social-icon">
+                {/* <div className="social-icon">
                   <a
                     href="https://www.facebook.com/hieumaxnho"
                     target="_blank"
@@ -101,7 +101,7 @@ export default function Auth() {
                   <a href="#" className="fa fa-google">
                     <FontAwesomeIcon icon={faGooglePlus} />
                   </a>
-                </div>
+                </div> */}
 
                 <p style={{ color: "#424242" }}>
                   Telephone: (+84)123456789 / Hotline: 113
@@ -113,7 +113,7 @@ export default function Auth() {
           <div className="form_content">
             <div className="logo">
               <Image src={logo} width="60px" height="60px" />
-              <h1 className="title">TUTORS FINDER</h1>
+              <h1 className="title">WAREHOUSE MANAGEMENT</h1>
             </div>
             <Form
               {...layout}

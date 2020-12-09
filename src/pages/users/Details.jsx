@@ -16,16 +16,16 @@ export default function Details(props) {
     <div>
       <Drawer
         width={640}
-        title={
-          <div>
-            <Avatar
-              src={props.user.photo}
-              icon={props.user.photo === null && <UserOutlined />}
-            />{" "}
-            &nbsp;
-            {props.user.username}
-          </div>
-        }
+        // title={
+        //   <div>
+        //     <Avatar
+        //       src={props.user.image}
+        //       icon={props.user.image === null && <UserOutlined />}
+        //     />{" "}
+        //     &nbsp;
+        //     {props.user.name}
+        //   </div>
+        // }
         placement="right"
         closable={false}
         onClose={props.onClose}
@@ -33,13 +33,11 @@ export default function Details(props) {
       >
         <Row>
           <Col>
-            <DescriptionItem
-              title="Full Name"
-              content={`${props.user.firstName} ${props.user.lastName}`}
-            />
+            <img className="photo-avatar" src={props.user.image} />
           </Col>
         </Row>
-        <Row>
+        
+        {/* <Row>
           <Col span={12}>
             <DescriptionItem
               title="Gender"
@@ -60,9 +58,18 @@ export default function Details(props) {
               content={props.user.dateOfBirth}
             />
           </Col>
-        </Row>
+        </Row> */}
         <Divider />
         <p className="site-description-item-profile-p">Contacts</p>
+        <Row>
+        <Col span={12}>
+            <DescriptionItem
+              className="name-avatar"
+              title="Full Name"
+              content={`${props.user.name}`}
+            />
+          </Col>
+        </Row>
         <Row>
           <Col span={12}>
             <DescriptionItem title="Email" content={props.user.email} />
@@ -70,7 +77,7 @@ export default function Details(props) {
           <Col span={12}>
             <DescriptionItem
               title="Phone Number"
-              content={props.user.phoneNumber}
+              content={props.user.phone}
             />
           </Col>
         </Row>

@@ -27,7 +27,11 @@ function Users(props) {
         setData(res[0]);
         setLoading(false);
         setResult(res[0]);
+<<<<<<< HEAD
         console.log("index : " + data)
+=======
+        console.log(data)
+>>>>>>> origin/main
       })
       .catch((err) => {
         console.log("error", err);
@@ -193,7 +197,10 @@ function Users(props) {
           </Space>
         ),
     },
+<<<<<<< HEAD
     
+=======
+>>>>>>> origin/main
   ];
   return (
     <>

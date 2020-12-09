@@ -28,3 +28,10 @@
     color: rgba(0, 0, 0, 0.85);
     font-weight: bold;
 }
+
+.photo-avatar{
+    position: relative;
+    left: calc((640px - 150px)/2);
+    height: 150px;
+    width: 150px;
+}
