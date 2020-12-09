@@ -1,10 +1,46 @@
-import React, { useEffect, useState } from "react";
-import "./details.css";
-import { Drawer, Divider, Col, Row, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import * as moment from "moment";
 
-export default function Details(props) {
+import React, { useEffect, useState } from "react";
+import moment from "moment";
+import { Form, Input, Button, Col, Row, Avatar, Typography, Space } from "antd";
+import {
+  UserAddOutlined,
+  SearchOutlined,
+  ReloadOutlined,
+  UserOutlined
+} from "@ant-design/icons";
+import avatar from "../../assets/avatar.jpg"
+import UsersList from "./WarehouseManagement/UsersList"
+import ProductsList from "./WarehouseManagement/ProductsList"
+import WarehouseServices from "../../api/WarehouseServices"
+//import { useHistory } from "react-router-dom";
+const { Title } = Typography;
+function Details(props) {
+  const dateFormat = "YYYY/MM/DD";
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  //const history = useHistory();
+  const _id = props.match.params.id;
+  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [buttonState, setButtonState] = useState({
+    user: true,
+    product: false
+  });
+
+  useEffect(() => {
+    async function fetchData() {
+      await WarehouseServices.getDetailWarehouse(_id)
+        .then((res) => {
+          setData(res[0]);
+          setLoading(false);
+          console.log(data)
+          console.log(res[0])
+        })
+        .catch((err) => setLoading(false));
+    }
+    fetchData();
+  }, [_id]);
+
 
   const DescriptionItem = ({ title, content }) => (
     <div className="site-description-item-profile-wrapper">
@@ -12,103 +48,114 @@ export default function Details(props) {
       {content}
     </div>
   );
-  
-  useEffect(()=>{
-    console.log(props.warehouse.city);
-  })
 
+  
+  const suffix = (
+    <SearchOutlined
+      style={{
+        fontSize: 16,
+        color: "#1890ff",
+      }}
+    />
+  );
+  
+  const onReload = () => {
+    window.location.reload();
+  };
+  const LoadingList = () => {
+    if (buttonState.user) return <UsersList searchTerm={searchTerm} id={_id} />;
+    if (buttonState.product) return <ProductsList searchTerm={searchTerm} id={_id} />;
+  }
   return (
-    <div>
-      <Drawer
-        width={640}
-        title={
-          <div>
-            <Avatar
-              src={props.warehouse.image}
-              icon={props.warehouse.image === null && <UserOutlined />}
-            />{" "}
-            &nbsp;
-            {props.warehouse.name}
-          </div>
-        }
-        placement="right"
-        closable={false}
-        onClose={props.onClose}
-        visible={props.visible}
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
       >
-        <Row>
-          <Col span={4}>
-            <DescriptionItem
-              title="Id"
-              content={`${props.warehouse.id}`}
-            />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem
-              title="Warehouse Name"
-              content={`${props.warehouse.name}`}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem
-              title="Address"
-              content={`${props.warehouse.address}`}
-            />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem
-              title="Create At"
-              content={moment(props.warehouse.createdAt).format("YYYY-MM-DDTHH:mm:ss")}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DescriptionItem
-              title="Update At"
-              content={moment(props.warehouse.updatedAt).format("YYYY-MM-DDTHH:mm:ss")}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DescriptionItem
-              title="City"
-              content={`${props.warehouse.city ? props.warehouse.city.name : "none"}`}
-              //content = {"help"}
-            />
-          </Col>
-        </Row>
-        {/* <Divider />
-        <p className="site-description-item-profile-p">Category</p>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem title="Name" content={`${props.warehouse.category ? props.warehouse.category.name : "none"}`} />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem
-              title="Description"
-              content={`${props.warehouse.category ? props.warehouse.category.description : "none"}`}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <DescriptionItem
-              title="Update At"
-              content={props.warehouse.category ? moment(props.warehouse.category.updatedAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
-            />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem
-              title="Create At"
-              content={props.warehouse.category ? moment(props.warehouse.category.createdAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
-            />
-          </Col>
-        </Row> */}
-      </Drawer>
-    </div>
+        <div style={{ flex: 1, padding: "20px", textAlign: "left" }}>
+
+          <Title level={2}>
+            <Avatar src={data ? data.image : avatar} size="large" />
+            {" "}
+            &nbsp;
+            {data ? data.name : "loading..."}
+          </Title>
+        </div>
+        <div style={{ flex: 1, padding: "10px", textAlign: "left" }}>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem
+                title="Address"
+                content={`${data ? data.address : "loading..."}`}
+              />
+            </Col>
+            <Col span={12}>
+              <DescriptionItem
+                title="Create At"
+                content={data ? moment(data.createdAt).format("YYYY-MM-DDTHH:mm:ss") : "loading..."}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem
+                title="Description"
+                content={`${data ? data.description : "loading..."}`}
+              />
+            </Col>
+            <Col span={12}>
+              <DescriptionItem
+                title="Update At"
+                content={data ? moment(data.createdAt).format("YYYY-MM-DDTHH:mm:ss") : "loading..."}
+              />
+            </Col>
+          </Row>
+        </div>
+
+      </div>
+      <div
+        style={{
+          flex: 4,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          paddingBottom: 15,
+          paddingLeft: 10,
+        }}
+      >
+        <Space>
+          <Input
+            style={{ width: 500 }}
+            placeholder="search something..."
+            suffix={suffix}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button type="primary" onClick={onReload} icon={<ReloadOutlined />}>
+            Reload
+          </Button>
+
+        </Space>
+        <Space style={{ marginLeft: "auto" }}>
+          <Button type="primary" ghost={buttonState.user} onClick={() => { setButtonState({ user: true, product: false }) }} >
+            Users
+          </Button>
+          <Button type="primary" ghost={buttonState.product} onClick={() => { setButtonState({ user: false, product: true }) }}>
+            Product
+          </Button>
+          <Button type="primary" >
+            History
+          </Button>
+        </Space>
+      </div>
+      <div style={{ padding: 10 }}>
+        <LoadingList />
+      </div>
+
+    </>
   );
 }
+export default Details;

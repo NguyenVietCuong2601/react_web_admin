@@ -4,11 +4,7 @@ function getUsers() {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-<<<<<<< HEAD
-      .get("https://managewarehouse.herokuapp.com/users?page=1&limit=1000", {
-=======
-      .get("https://managewarehouse.herokuapp.com/users?limit=10", {
->>>>>>> origin/main
+      .get("https://managewarehouse.herokuapp.com/users?limit=1000", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -17,10 +13,6 @@ function getUsers() {
         console.log(res)
         const data = [];
         data.push(res.data.data.users);
-<<<<<<< HEAD
-        console.log( data);
-=======
->>>>>>> origin/main
         resolve(data);
 
       })

@@ -10,6 +10,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import UsersServices from "../../../../../api/UsersServices";
+import WarehouseServices from "../../../../../api/WarehouseServices";
 import useDebounce from "../../../../../hooks/useDebounce";
 function Users(props) {
   //local state
@@ -19,6 +20,7 @@ function Users(props) {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const searchTerm = props.searchTerm;
+  const warehouseId = props.callfromWarehouse;
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const loadData = () => {
@@ -27,11 +29,19 @@ function Users(props) {
         setData(res[0]);
         setLoading(false);
         setResult(res[0]);
-<<<<<<< HEAD
-        console.log("index : " + data)
-=======
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setLoading(false);
+      });
+  };
+  const loadDataForWarehouse = (id) => {
+    WarehouseServices.getUserWarehouse(id)
+      .then((res) => {
+        setData(res[0]);
+        setLoading(false);
+        setResult(res[0]);
         console.log(data)
->>>>>>> origin/main
       })
       .catch((err) => {
         console.log("error", err);
@@ -40,7 +50,12 @@ function Users(props) {
   };
   useEffect(() => {
     setLoading(true);
-    loadData();
+    if (warehouseId) {
+      loadDataForWarehouse(warehouseId);
+    }
+    else loadData();
+    //loadData();
+
   }, []);
   useEffect(() => {
     if (debouncedSearchTerm) {
@@ -149,8 +164,8 @@ function Users(props) {
           authority === "ROLE_ADMIN"
             ? "ADMIN"
             : authority === "ROLE_TUTOR"
-            ? "TUTOR"
-            : "STUDENT";
+              ? "TUTOR"
+              : "STUDENT";
         if (activeStatus === "ADMIN") {
           color = "#f44336";
         } else if (activeStatus === "TUTOR") {
@@ -187,20 +202,16 @@ function Users(props) {
             />
           </Space>
         ) : (
-          <Space size="small">
-            <Button
-              icon={<FolderViewOutlined />}
-              onClick={() => onSelect(record)}
-            />
-            <Button disabled type="primary" icon={<EditOutlined />} />
-            <Button danger disabled type="primary" icon={<DeleteOutlined />} />
-          </Space>
-        ),
+            <Space size="small">
+              <Button
+                icon={<FolderViewOutlined />}
+                onClick={() => onSelect(record)}
+              />
+              <Button disabled type="primary" icon={<EditOutlined />} />
+              <Button danger disabled type="primary" icon={<DeleteOutlined />} />
+            </Space>
+          ),
     },
-<<<<<<< HEAD
-    
-=======
->>>>>>> origin/main
   ];
   return (
     <>

@@ -142,12 +142,15 @@ function Warehouse(props) {
             render: (record) =>
                 record.authority !== "ROLE_ADMIN" ? (
                     <Space size="small">
-                        <Button
+                        {/* <Button
                             icon={<FolderViewOutlined />}
                             onClick={() => onSelect(record)}
-                        ></Button>
-                        <Link target="_top" to={`/home/users/${record.id}/edit`}>
-                            <Button type="primary" icon={<EditOutlined />} />
+                        ></Button> */}
+                        {/* <Link target="_top" to={`/home/users/${record.id}/edit`}>
+                            <Button type="primary" icon={<FolderViewOutlined />} />
+                        </Link> */}
+                        <Link target="_top" to={`/home/warehouse/${record.id}/detail`}>
+                            <Button type="primary" icon={<FolderViewOutlined />} />
                         </Link>
                         <DeleteButton
                             loading={loading}
@@ -179,7 +182,7 @@ function Warehouse(props) {
                 size="small"
                 rowKey={(record) => `${record.id}`}
             />
-            <Details warehouse={selectedWarehouse} visible={visible} onClose={onClose} />
+            {/* <Details warehouse={selectedWarehouse} visible={visible} onClose={onClose} /> */}
         </>
     );
 }

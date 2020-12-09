@@ -13,6 +13,7 @@ import UsersServices from "../../../../../api/UsersServices";
 import useDebounce from "../../../../../hooks/useDebounce";
 //New Shit
 import ProductsServices from "../../../../../api/ProductsServices"
+import WarehouseServices from "../../../../../api/WarehouseServices";
 
 function Products(props) {
     //local state
@@ -22,6 +23,7 @@ function Products(props) {
     const [result, setResult] = useState([]);
     const [loading, setLoading] = useState(false);
     const searchTerm = props.searchTerm;
+    const warehouseId = props.callfromWarehouse;
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
     const loadData = () => {
@@ -38,9 +40,25 @@ function Products(props) {
                 setLoading(false);
             });
     };
+    const loadDataForWarehouse = (id) => {
+        WarehouseServices.getProductWarehouse(id)
+            .then((res) => {
+                setData(res[0]);
+                setLoading(false);
+                setResult(res[0]);
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log("error", err);
+                setLoading(false);
+            });
+    };
     useEffect(() => {
         setLoading(true);
-        loadData();
+        if (warehouseId) {
+            loadDataForWarehouse(warehouseId);
+        }
+        else loadData();
     }, []);
     useEffect(() => {
         if (debouncedSearchTerm) {
@@ -118,7 +136,7 @@ function Products(props) {
             title: "Image",
             dataIndex: "image",
             key: "image",
-            render: (image) => <img src={image} style={{width:"50px",height:"50px"}}></img>,
+            render: (image) => <img src={image} style={{ width: "50px", height: "50px" }}></img>,
         },
         {
             title: "Name",

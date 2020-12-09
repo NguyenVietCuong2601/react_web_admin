@@ -23,7 +23,12 @@ const routes = [
     path: "warehouse",
     exact: true,
     component: "warehouse/WarehouseManagement/Warehouse",
-  }
+  },
+  {
+    path: "warehouse/:id/detail",
+    exact: true,
+    component: "warehouse/Details",
+  },
   
 ];
 export default routes;
