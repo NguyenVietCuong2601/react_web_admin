@@ -42,7 +42,7 @@ function Users(props) {
     if (debouncedSearchTerm) {
       const items = data.filter(
         (item) =>
-          item.username.toLowerCase().includes(debouncedSearchTerm) ||
+          item.name.toLowerCase().includes(debouncedSearchTerm) ||
           item.email.toLowerCase().includes(debouncedSearchTerm)
       );
       return setResult(items);

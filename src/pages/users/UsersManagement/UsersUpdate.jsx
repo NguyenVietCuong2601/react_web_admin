@@ -29,6 +29,7 @@ function UsersUpdate(props) {
     });
   };
   const layout = {
+  
     labelCol: { span: 8 },
     wrapperCol: { span: 8 },
   };
@@ -75,7 +76,7 @@ function UsersUpdate(props) {
   return (
     <div>
       {data && (
-        <Form
+        <Form style={{marginTop: 60}}
           {...layout}
           name="basic"
           onFinish={onFinish}

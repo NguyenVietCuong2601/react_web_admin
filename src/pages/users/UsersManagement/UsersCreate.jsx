@@ -120,7 +120,7 @@ function UsersCreate(props) {
       address: values.address,
       email: values.email,
       //gender: values.gender,
-      image: urlImg || null,
+      image: "https://image.flaticon.com/icons/png/512/194/194938.png",
       //introduction: values.introduction,
       phone: values.phone,
       //dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
@@ -179,7 +179,7 @@ function UsersCreate(props) {
           >
             <Input />
           </Form.Item>
-          <div className="upload-img">
+          {/* <div className="upload-img">
             <label style={{ marginRight: 10 }}>Avatar:</label>
             <div name="image" className="avatar-uploader">
               {urlImg ? (
@@ -196,7 +196,7 @@ function UsersCreate(props) {
             <div className="choose-file">
               <input type="file" onChange={handleChange} title=" " />
             </div>
-          </div>
+          </div> */}
 
           {/* <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
             <Radio.Group>
