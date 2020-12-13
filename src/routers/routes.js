@@ -15,6 +15,11 @@ const routes = [
     component: "users/UsersManagement/UsersUpdate",
   },
   {
+    path: "users/:id/history",
+    exact: true,
+    component: "users/UsersManagement/HistoryList",
+  },
+  {
     path: "products",
     exact: true,
     component: "product/ProductsManagement/Products",

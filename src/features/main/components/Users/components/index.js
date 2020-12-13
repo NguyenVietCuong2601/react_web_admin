@@ -8,6 +8,7 @@ import {
   FolderViewOutlined,
   EditOutlined,
   DeleteOutlined,
+  HistoryOutlined
 } from "@ant-design/icons";
 import UsersServices from "../../../../../api/UsersServices";
 import WarehouseServices from "../../../../../api/WarehouseServices";
@@ -61,7 +62,7 @@ function Users(props) {
     if (debouncedSearchTerm) {
       const items = data.filter(
         (item) =>
-          item.username.toLowerCase().includes(debouncedSearchTerm) ||
+          item.name.toLowerCase().includes(debouncedSearchTerm) ||
           item.email.toLowerCase().includes(debouncedSearchTerm)
       );
       return setResult(items);
@@ -192,6 +193,9 @@ function Users(props) {
             ></Button>
             <Link target="_top" to={`/home/users/${record.id}/edit`}>
               <Button type="primary" icon={<EditOutlined />} />
+            </Link>
+            <Link target="_top" to={`/home/users/${record.id}/history`}>
+              <Button type="primary" icon={<HistoryOutlined />} />
             </Link>
             <DeleteButton
               loading={loading}
