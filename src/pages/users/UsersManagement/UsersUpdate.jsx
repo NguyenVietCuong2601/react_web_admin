@@ -4,6 +4,7 @@ import { Form, Input, Button, Radio, DatePicker, notification } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import UsersServices from "../../../api/UsersServices";
 import { useHistory } from "react-router-dom";
+import "./UserCreate.css";
 
 function UsersUpdate(props) {
   const dateFormat = "YYYY/MM/DD";
@@ -97,7 +98,7 @@ function UsersUpdate(props) {
             label="Name"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className="create-item"/>
           </Form.Item>
           {/* <Form.Item
             name="lastName"
@@ -111,7 +112,7 @@ function UsersUpdate(props) {
             label="Email"
             rules={[{ type: "email", required: true }]}
           >
-            <Input disabled/>
+            <Input className="create-item" disabled/>
           </Form.Item>
           {/* <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
             <Radio.Group>
@@ -133,14 +134,14 @@ function UsersUpdate(props) {
               { message: "Please input your phone number!", required: true },
             ]}
           >
-            <Input addonBefore="(+84)" />
+            <Input className="create-item" />
           </Form.Item>
           <Form.Item
             name="address"
             label="Address"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className="create-item"/>
           </Form.Item>
 
           {/* <Form.Item name="introduction" label="Introduction">

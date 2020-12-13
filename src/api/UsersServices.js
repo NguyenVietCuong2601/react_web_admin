@@ -1,10 +1,11 @@
 import axios from "axios";
+import decodeToken from '../helper/decodeToken'
 
 function getUsers() {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-      .get("https://managewarehouse.herokuapp.com/users?limit=10", {
+      .get("https://managewarehouse.herokuapp.com/users?limit=1000", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,6 +43,8 @@ function getDetailUser(id) {
       });
   });
 }
+
+
 function createUser(createdUser) {
   return new Promise((resolve, reject) => {
     axios

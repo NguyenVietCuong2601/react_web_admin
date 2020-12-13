@@ -15,6 +15,7 @@ import UsersServices from "../../../api/UsersServices";
 import { storage } from "../../../firebase";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import "./UserCreate.css";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const { Option } = Select;
 
@@ -145,39 +146,27 @@ function UsersCreate(props) {
           validateMessages={validateMessages}
         >
           <Form.Item
+            className="create-item-form"
             name="name"
             label="Name"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className="create-item"/>
           </Form.Item>
-          {/* <Form.Item
-            name="lastName"
-            label="Last Name"
-            rules={[{ required: true }]}
-          >
-            <Input />
-          </Form.Item> */}
-          {/* <Form.Item
-            name="username"
-            label="User Name"
-            rules={[{ min: 3, required: true }]}
-          >
-            <Input />
-          </Form.Item> */}
           <Form.Item
+            className="create-item-form"
             name="password"
             label="Password"
-            rules={[{ min: 3, required: true }]}
+            rules={[{ min: 6, required: true }]}
           >
-            <Input.Password />
+            <Input.Password className="create-item"/>
           </Form.Item>
-          <Form.Item
+          <Form.Item className="create-item-form"
             name="email"
             label="Email"
             rules={[{ type: "email", required: true }]}
           >
-            <Input />
+            <Input className="create-item"/>
           </Form.Item>
           {/* <div className="upload-img">
             <label style={{ marginRight: 10 }}>Avatar:</label>
@@ -227,26 +216,29 @@ function UsersCreate(props) {
           </Form.Item> */}
 
           <Form.Item
+            className="create-item-form"
             name="phone"
             label="Phone"
             rules={[
               { message: "Please input your phone number!", required: true },
             ]}
           >
-            <Input addonBefore="(+84)" />
+            <Input className="create-item"/>
           </Form.Item>
-          <Form.Item
+          <Form.Item 
+            className="create-item-form"
             name="address"
             label="Address"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className="create-item"/>
           </Form.Item>
           {/* <Form.Item name="introduction" label="Introduction">
             <Input.TextArea />
           </Form.Item> */}
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
             <Button
+              style={{borderRadius: "3px"}}
               type="primary"
               htmlType="submit"
               disabled={loading}
