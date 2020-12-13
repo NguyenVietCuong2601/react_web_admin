@@ -11,6 +11,7 @@ import {
 import avatar from "../../assets/avatar.jpg"
 import UsersList from "./WarehouseManagement/UsersList"
 import ProductsList from "./WarehouseManagement/ProductsList"
+import HistoryList from "./WarehouseManagement/HistoryList"
 import WarehouseServices from "../../api/WarehouseServices"
 //import { useHistory } from "react-router-dom";
 const { Title } = Typography;
@@ -24,7 +25,8 @@ function Details(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [buttonState, setButtonState] = useState({
     user: true,
-    product: false
+    product: false,
+    history: false
   });
 
   useEffect(() => {
@@ -65,6 +67,7 @@ function Details(props) {
   const LoadingList = () => {
     if (buttonState.user) return <UsersList searchTerm={searchTerm} id={_id} />;
     if (buttonState.product) return <ProductsList searchTerm={searchTerm} id={_id} />;
+    if (buttonState.history) return <HistoryList searchTerm={searchTerm} id={_id} />;
   }
   return (
     <>
@@ -140,13 +143,13 @@ function Details(props) {
 
         </Space>
         <Space style={{ marginLeft: "auto" }}>
-          <Button type="primary" ghost={buttonState.user} onClick={() => { setButtonState({ user: true, product: false }) }} >
+          <Button type="primary" ghost={buttonState.user} onClick={() => { setButtonState({ user: true, product: false,history: false }) }} >
             Users
           </Button>
-          <Button type="primary" ghost={buttonState.product} onClick={() => { setButtonState({ user: false, product: true }) }}>
+          <Button type="primary" ghost={buttonState.product} onClick={() => { setButtonState({ user: false, product: true,history:false }) }}>
             Product
           </Button>
-          <Button type="primary" >
+          <Button type="primary" ghost={buttonState.history} onClick={() => { setButtonState({ user: false, product: false,history:true }) }} >
             History
           </Button>
         </Space>

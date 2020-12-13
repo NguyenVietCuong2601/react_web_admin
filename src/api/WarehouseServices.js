@@ -96,9 +96,33 @@ function getProductWarehouse(id) {
       });
   });
 }
+
+function getHistoryWarehouse(id) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`https://managewarehouse.herokuapp.com/histories/warehouses/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: { id: id },
+      })
+      .then((res) => {
+        const data = [];
+        data.push(res.data.data.histories);
+        resolve(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
+  });
+}
 export default {
     getWarehouse,
     getDetailWarehouse,
     getUserWarehouse,
-    getProductWarehouse
+    getProductWarehouse,
+    getHistoryWarehouse
 };
