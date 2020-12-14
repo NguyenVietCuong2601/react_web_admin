@@ -14,30 +14,23 @@ const { Meta } = Card;
 
 export default function HeaderNav() {
 
-  // const [data, setData] = useState([]);
-  // const [result, setResult] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  //const token = JSON.parse(localStorage.getItem("token"));
-  //const adminData = localStorage.getItem("adminData")
-  // const decode = decodeToken(token)
-  // const loadData = () => {
-  //   UsersServices.getDetailUser(decode.id)
-  //     .then((res) => {
-  //       setData(res[0]);
-  //       setLoading(true);
-  //       setResult(res[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log("error", err);
-  //       setLoading(false);
-  //     });
-  // };
+  const [data, setData] = useState([]);
+  const token = JSON.parse(localStorage.getItem("token"));
+  const adminID = localStorage.getItem("id")
+  const decode = decodeToken(token)
+  const loadData = (id) => {
+    UsersServices.getDetailUser(id)
+      .then((res) => {
+        setData(res[0].data);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
 
-  // console.log(adminData)
-  // useEffect(() => {
-  //   setLoading(true);
-  //   loadData();
-  // }, []);
+  useEffect(() => {
+    loadData(adminID);
+  }, []);
 
   const loginData = [
     {
@@ -52,12 +45,12 @@ export default function HeaderNav() {
     <div>
       <Card style={{ width: 300, height: "auto", borderWidth: 1 }}>
         <Meta
-          avatar={<Avatar src={avatar} />}
-          title="ASAD"
+          avatar={<Avatar src={data ? data.image : avatar} />}
+          title={data ? data.name : "WTF????"}
           description="Administrator"
         />
         <div style={{ textAlign: "center", margin: 25, padding: 10 }}>
-          <p>Death is like the wind, always by my side</p>
+          <p>{`Hello ${data.name}, Welcome to Administrator site!`}</p>
 
           <Link to="/login" target="_top" style={{ color: "white" }}>
             <Button
@@ -122,8 +115,8 @@ export default function HeaderNav() {
         <div style={{ margin: "0 5px" }}>
           <Dropdown overlay={profileOverlay}>
             <div style={{ cursor: "pointer" }}>
-              <Avatar src={avatar} />
-              <span style={{ margin: "10px 10px 10px 20px" }}>Hieu Nguyen</span>
+              <Avatar src={data ? data.image : avatar} />
+              <span style={{ margin: "10px 10px 10px 20px" }} >{`${data.name}`}</span>
               <Link
                 target="_blank"
                 rel="noopener noreferrer"

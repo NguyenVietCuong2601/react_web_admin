@@ -50,7 +50,7 @@ function Layouts() {
                 padding: 0,
                 width: "100%",
                 backgroundColor: "white",
-                position: "fixed",
+                position: "static",
                 zIndex: 999,
               }}
             >

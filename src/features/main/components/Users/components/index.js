@@ -8,8 +8,10 @@ import {
   FolderViewOutlined,
   EditOutlined,
   DeleteOutlined,
+  HistoryOutlined
 } from "@ant-design/icons";
 import UsersServices from "../../../../../api/UsersServices";
+import WarehouseServices from "../../../../../api/WarehouseServices";
 import useDebounce from "../../../../../hooks/useDebounce";
 import decodeToken from '../../../../../helper/decodeToken'
 function Users(props) {
@@ -20,6 +22,7 @@ function Users(props) {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const searchTerm = props.searchTerm;
+  const warehouseId = props.callfromWarehouse;
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const loadData = () => {
@@ -35,10 +38,28 @@ function Users(props) {
         setLoading(false);
       });
   };
+  const loadDataForWarehouse = (id) => {
+    WarehouseServices.getUserWarehouse(id)
+      .then((res) => {
+        setData(res[0]);
+        setLoading(false);
+        setResult(res[0]);
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log("error", err);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     setLoading(true);
-    loadData();
+    if (warehouseId) {
+      loadDataForWarehouse(warehouseId);
+    }
+    else loadData();
+    //loadData();
+
   }, []);
   
   useEffect(() => {
@@ -148,8 +169,8 @@ function Users(props) {
           authority === "ROLE_ADMIN"
             ? "ADMIN"
             : authority === "ROLE_TUTOR"
-            ? "TUTOR"
-            : "STUDENT";
+              ? "TUTOR"
+              : "STUDENT";
         if (activeStatus === "ADMIN") {
           color = "#f44336";
         } else if (activeStatus === "TUTOR") {
@@ -177,6 +198,9 @@ function Users(props) {
             <Link target="_top" to={`/home/users/${record.id}/edit`}>
               <Button type="primary" icon={<EditOutlined />} />
             </Link>
+            <Link target="_top" to={`/home/users/${record.id}/history`}>
+              <Button type="primary" icon={<HistoryOutlined />} />
+            </Link>
             <DeleteButton
               loading={loading}
               item={record}
@@ -186,15 +210,15 @@ function Users(props) {
             />
           </Space>
         ) : (
-          <Space size="small">
-            <Button
-              icon={<FolderViewOutlined />}
-              onClick={() => onSelect(record)}
-            />
-            <Button disabled type="primary" icon={<EditOutlined />} />
-            <Button danger disabled type="primary" icon={<DeleteOutlined />} />
-          </Space>
-        ),
+            <Space size="small">
+              <Button
+                icon={<FolderViewOutlined />}
+                onClick={() => onSelect(record)}
+              />
+              <Button disabled type="primary" icon={<EditOutlined />} />
+              <Button danger disabled type="primary" icon={<DeleteOutlined />} />
+            </Space>
+          ),
     },
   ];
   return (

@@ -4,10 +4,12 @@ import {
   UserOutlined,
   FormOutlined,
   UnorderedListOutlined,
-  SnippetsOutlined,
-  BookOutlined,
-  TeamOutlined,
-  BellOutlined,
+  // SnippetsOutlined,
+  // BookOutlined,
+  // TeamOutlined,
+  // BellOutlined,
+  BankOutlined,
+  BarcodeOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
@@ -26,17 +28,22 @@ export default function SideBar(props) {
       ? 1
       : path === "/home/users"
       ? 2
-      : path === "/home/subjects"
+      : path === "/home/products"
       ? 3
-      : path === "/home/tutors"
-      ? 4
-      : path === "/home/needs"
-      ? 5
-      : path === "/home/feedbacks"
-      ? 6
-      : path === "home/notifications"
-      ? 7
-      : path === "home/courses" && 8
+      : path === "/home/warehouse"
+      // ? 2
+      // : path === "/home/subjects"
+      // ? 3
+      // : path === "/home/tutors"
+      // ? 4
+      // : path === "/home/needs"
+      // ? 5
+      // : path === "/home/feedbacks"
+      // ? 6
+      // : path === "home/notifications"
+      // ? 7
+      // : path === "home/courses" 
+      && 4
   );
   console.log("key", selectedKey);
   const handleClick = (e) => {
@@ -80,7 +87,13 @@ export default function SideBar(props) {
           <Menu.Item key="2" icon={<UserOutlined />}>
             <Link to="/home/users">Users</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<SnippetsOutlined />}>
+          <Menu.Item key="3" icon={<BarcodeOutlined />}>
+            <Link to="/home/products">Products</Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<BankOutlined />}>
+            <Link to="/home/warehouse">Warehouse</Link>
+          </Menu.Item>
+          {/* <Menu.Item key="3" icon={<SnippetsOutlined />}>
             <Link to="/home/subjects">Subjects</Link>
           </Menu.Item>
           <Menu.Item key="4" icon={<TeamOutlined />}>
@@ -94,12 +107,12 @@ export default function SideBar(props) {
           </Menu.Item>
           <Menu.Item key="7" icon={<FormOutlined />}>
             <Link to="/home/courses">Courses</Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </SubMenu>
 
-        <Menu.Item key="8" icon={<BellOutlined />}>
+        {/* <Menu.Item key="8" icon={<BellOutlined />}>
           <Link to="/home/notifications">Notifications</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </>
   );

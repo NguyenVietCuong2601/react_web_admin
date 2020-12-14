@@ -5,11 +5,6 @@ const routes = [
     component: "dashboard",
   },
   {
-    path: "courses",
-    exact: true,
-    component: "courses",
-  },
-  {
     path: "users",
     exact: true,
     component: "users/UsersManagement/Users",
@@ -20,29 +15,25 @@ const routes = [
     component: "users/UsersManagement/UsersUpdate",
   },
   {
-    path: "subjects",
+    path: "users/:id/history",
     exact: true,
-    component: "subjects/Subjects",
+    component: "users/UsersManagement/HistoryList",
   },
   {
-    path: "tutors",
+    path: "products",
     exact: true,
-    component: "tutors/Tutors",
+    component: "product/ProductsManagement/Products",
   },
   {
-    path: "needs",
+    path: "warehouse",
     exact: true,
-    component: "needs/Needs",
+    component: "warehouse/WarehouseManagement/Warehouse",
   },
   {
-    path: "feedbacks",
+    path: "warehouse/:id/detail",
     exact: true,
-    component: "feedback/Feedbacks",
+    component: "warehouse/Details",
   },
-  {
-    path: "notifications",
-    exact: true,
-    component: "notifications/Notifications",
-  },
+  
 ];
 export default routes;
