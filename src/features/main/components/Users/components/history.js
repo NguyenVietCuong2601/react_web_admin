@@ -72,8 +72,8 @@ function History(props) {
         if (debouncedSearchTerm) {
             const items = data.filter(
                 (item) =>
-                    item.username.toLowerCase().includes(debouncedSearchTerm) ||
-                    item.email.toLowerCase().includes(debouncedSearchTerm)
+                    item.warehouse.toLowerCase().includes(debouncedSearchTerm) ||
+                    item.products.toLowerCase().includes(debouncedSearchTerm)
             );
             return setResult(items);
         }
@@ -173,8 +173,8 @@ function History(props) {
             title: "Amount",
             dataIndex: "products",
             key: "products",
-            //render: (products) => <div>{products ? products[0].ProductHistory.amount : "none"}</div>,
-            render: (products) => <div>{"none"}</div>,
+            render: (products) => <div>{products[0] ? products[0].ProductHistory.amount : "none"}</div>,
+            //render: (products) => <div>{"none"}</div>,
         },
         {
             title: "Time",

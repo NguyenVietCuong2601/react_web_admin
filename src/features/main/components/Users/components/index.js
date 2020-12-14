@@ -13,6 +13,7 @@ import {
 import UsersServices from "../../../../../api/UsersServices";
 import WarehouseServices from "../../../../../api/WarehouseServices";
 import useDebounce from "../../../../../hooks/useDebounce";
+import decodeToken from '../../../../../helper/decodeToken'
 function Users(props) {
   //local state
   const [selectedUser, setSelectedUser] = useState([]);
@@ -43,12 +44,14 @@ function Users(props) {
         setLoading(false);
         setResult(res[0]);
         console.log(data)
+        //console.log(decodeToken(token).id)
       })
       .catch((err) => {
         console.log("error", err);
         setLoading(false);
       });
   };
+
   useEffect(() => {
     setLoading(true);
     if (warehouseId) {
@@ -58,6 +61,7 @@ function Users(props) {
     //loadData();
 
   }, []);
+  
   useEffect(() => {
     if (debouncedSearchTerm) {
       const items = data.filter(
@@ -157,19 +161,21 @@ function Users(props) {
     },
     {
       title: "Role",
-      dataIndex: "authority",
-      key: "authority",
-      render: (authority) => {
+      dataIndex: "permissions",
+      key: "permissions",
+      render: (permissions) => {
         let color = "green";
-        const activeStatus =
-          authority === "ROLE_ADMIN"
-            ? "ADMIN"
-            : authority === "ROLE_TUTOR"
-              ? "TUTOR"
-              : "STUDENT";
+        // const activeStatus =
+        // permissions === "ROLE_ADMIN"
+        //     ? "ADMIN"
+        //     : permissions === "ROLE_TUTOR"
+        //       ? "TUTOR"
+        //       : "STUDENT";
+        let activeStatus = permissions[0] ? permissions[0].permissionName : "EMPLOYEE"
         if (activeStatus === "ADMIN") {
           color = "#f44336";
-        } else if (activeStatus === "TUTOR") {
+        } else if (activeStatus === "CHIEF_EMPLOYEE") {
+          activeStatus = "CHIEF";
           color = "#0288d1";
         } else color = "#ffc400";
         return (
@@ -184,8 +190,9 @@ function Users(props) {
       key: "action",
       align: "center",
       responsive: ["lg"],
-      render: (record) =>
-        record.authority !== "ROLE_ADMIN" ? (
+      render: (record) => {
+        let permissions = record.permissions[0] ? record.permissions[0].permissionName : "EMPLOYEE";
+        return permissions !== "ADMIN" ? (
           <Space size="small">
             <Button
               icon={<FolderViewOutlined />}
@@ -207,14 +214,26 @@ function Users(props) {
           </Space>
         ) : (
             <Space size="small">
-              <Button
+              {/* <Button
                 icon={<FolderViewOutlined />}
                 onClick={() => onSelect(record)}
               />
               <Button disabled type="primary" icon={<EditOutlined />} />
+              <Button danger disabled type="primary" icon={<DeleteOutlined />} /> */}
+              <Button
+              icon={<FolderViewOutlined />}
+              onClick={() => onSelect(record)}
+            ></Button>
+            
+              <Button disabled type="primary" icon={<EditOutlined />} />
+            
+            
+              <Button disabled type="primary" icon={<HistoryOutlined />} />
+            
               <Button danger disabled type="primary" icon={<DeleteOutlined />} />
             </Space>
-          ),
+          )},
+            
     },
   ];
   return (
@@ -230,5 +249,4 @@ function Users(props) {
     </>
   );
 }
-
 export default Users;

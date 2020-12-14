@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, Dropdown, Card, Button, Badge, List } from "antd";
 import {
@@ -8,10 +8,42 @@ import {
 } from "@ant-design/icons";
 import avatar from "../../assets/avatar.jpg";
 import "../../layouts/index.css";
+import UsersServices from '../../api/UsersServices'
+import decodeToken from '../../helper/decodeToken'
 const { Meta } = Card;
 
 export default function HeaderNav() {
-  const data = [
+
+  const [data, setData] = useState([]);
+  // const [result, setResult] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  //const token = JSON.parse(localStorage.getItem("token"));
+  //const adminData = localStorage.getItem("adminData")
+  // const decode = decodeToken(token)
+  const adminID = localStorage.getItem("id");
+  const loadData = (id) => {
+    UsersServices.getDetailUser(id)
+      .then((res) => {
+        setData(res[0].data);
+        console.log(res[0]);
+        // setLoading(true);
+        // setResult(res[0]);
+      })
+      .catch((err) => {
+        console.log("error", err);
+        // setLoading(false);
+      });
+  };
+
+  // console.log(adminData)
+  useEffect(() => {
+    // setLoading(true);
+    
+    loadData(adminID);
+    console.log(data);
+  }, []);
+
+  const loginData = [
     {
       title: "Notification",
     },
@@ -24,8 +56,8 @@ export default function HeaderNav() {
     <div>
       <Card style={{ width: 300, height: "auto", borderWidth: 1 }}>
         <Meta
-          avatar={<Avatar src={avatar} />}
-          title="Hieu Nguyen"
+          avatar={<Avatar src={data ? data.image : avatar} />}
+          title="ASAD"
           description="Administrator"
         />
         <div style={{ textAlign: "center", margin: 25, padding: 10 }}>
@@ -58,7 +90,7 @@ export default function HeaderNav() {
       <List
         bordered={true}
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={loginData}
         renderItem={notificationsList}
       />
     </div>
@@ -81,7 +113,7 @@ export default function HeaderNav() {
         >
           <Dropdown overlay={notificationOverLay}>
             <Badge
-              count={data.length}
+              count={loginData.length}
               size="small"
               style={{ fontSize: "14px" }}
             >

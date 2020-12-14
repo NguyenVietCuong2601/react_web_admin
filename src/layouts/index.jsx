@@ -43,6 +43,7 @@ function Layouts() {
             style={{
               marginLeft: !collapsed ? 200 : 80,
               transition: "margin-left 0.2s",
+              position: "fixed"
             }}
           >
             <Header

@@ -17,3 +17,12 @@
   margin: 20px;
 }
 
+.create-item-form{
+  margin-bottom: 16px;
+}
+
+.create-item {
+  border-radius: 5px;
+  font-size: 17px;
+}
+

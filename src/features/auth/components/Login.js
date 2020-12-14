@@ -15,6 +15,7 @@ import {
 import "./login.css";
 import auth from "../../../api/auth";
 import Progress from "../../../components/Progress/Progress";
+import UserService from "../../../api/UsersServices"
 
 const { Title, Paragraph } = Typography;
 export default function Auth() {
@@ -53,6 +54,16 @@ export default function Auth() {
         setLoading(false);
         setIsAuth(true);
         openNotificationWithIcon("success", "Success", "Login successfully !");
+        // UserService.getDetailUser(localStorage.getItem("id"))
+        // .then((res) => {
+          
+        //   localStorage.setItem("adminData", res[0].data)
+        //   console.log(res[0]);
+        //   console.log(res[0].data);
+        // })
+        // .catch((err) => {
+        //   console.log("error", err);
+        // });
       })
       .catch((err) => {
         setIsAuth(false);
