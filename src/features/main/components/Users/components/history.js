@@ -44,7 +44,6 @@ function History(props) {
                 setData(res[0]);
                 setLoading(false);
                 setResult(res[0]);
-                //setSelectedWarehouse(res[1])
                 console.log(res[0])
 
             })
@@ -96,23 +95,7 @@ function History(props) {
     const onClose = () => {
         setVisible(false);
     };
-    //   const onToggleStatus = (id, status) => {
-    //     setLoading(true);
-    //     UsersServices.changeStatus(id, status)
-    //       .then((res) => {
-    //         openNotificationWithIcon(
-    //           "success",
-    //           "Success!",
-    //           `This user is now ${status}`
-    //         );
-    //         setLoading(false);
-    //         loadData();
-    //       })
-    //       .catch((e) => {
-    //         console.log(e);
-    //         setLoading(false);
-    //       });
-    //   };
+    
     const onDelete = (id) => {
         setLoading(true);
         UsersServices.deleteUser(id)
