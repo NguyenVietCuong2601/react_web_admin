@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Details from "../../../../../pages/warehouse/Details";
 import { Link } from "react-router-dom";
-import DeleteButton from "../../../../../components/DeleteButton";
 import { Table, Space, Button, Tag, notification ,Typography,Input,Avatar} from "antd";
 import * as moment from "moment";
 import {
@@ -44,8 +42,6 @@ function History(props) {
                 setData(res[0]);
                 setLoading(false);
                 setResult(res[0]);
-                console.log(res[0])
-
             })
             .catch((err) => {
                 console.log("error", err);
@@ -56,7 +52,6 @@ function History(props) {
         UsersServices.getDetailUser(id)//this shit is change.
             .then((res) => {
                 setUser(res[0].data);
-                console.log(res[0]);
             })
             .catch((err) => {
                 console.log("error", err);
@@ -71,8 +66,8 @@ function History(props) {
         if (debouncedSearchTerm) {
             const items = data.filter(
                 (item) =>
-                    item.username.toLowerCase().includes(debouncedSearchTerm) ||
-                    item.email.toLowerCase().includes(debouncedSearchTerm)
+                    (item.warehouse ? item.warehouse.name.toLowerCase().includes(debouncedSearchTerm) : false) ||
+                    (item.products[0] ? item.products[0].name.toLowerCase().includes(debouncedSearchTerm) : false)
             );
             return setResult(items);
         }
@@ -156,8 +151,8 @@ function History(props) {
             title: "Amount",
             dataIndex: "products",
             key: "products",
-            //render: (products) => <div>{products ? products[0].ProductHistory.amount : "none"}</div>,
-            render: (products) => <div>{"none"}</div>,
+            render: (products) => <div>{products[0] ? products[0].ProductHistory.amount : "none"}</div>,
+            //render: (products) => <div>{"none"}</div>,
         },
         {
             title: "Time",
@@ -217,7 +212,7 @@ function History(props) {
             <div style={{ padding: 10 }}>
                 <Table
                 loading={loading}
-                dataSource={data}
+                dataSource={result}
                 columns={columns}
                 size="small"
                 rowKey={(record) => `${record.id}`}

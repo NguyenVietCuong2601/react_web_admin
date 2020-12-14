@@ -15,21 +15,32 @@ const { Meta } = Card;
 export default function HeaderNav() {
 
   const [data, setData] = useState([]);
-  const token = JSON.parse(localStorage.getItem("token"));
-  const adminID = localStorage.getItem("id")
-  const decode = decodeToken(token)
+  // const [result, setResult] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  //const token = JSON.parse(localStorage.getItem("token"));
+  //const adminData = localStorage.getItem("adminData")
+  // const decode = decodeToken(token)
+  const adminID = localStorage.getItem("id");
   const loadData = (id) => {
     UsersServices.getDetailUser(id)
       .then((res) => {
         setData(res[0].data);
+        console.log(res[0]);
+        // setLoading(true);
+        // setResult(res[0]);
       })
       .catch((err) => {
         console.log("error", err);
+        // setLoading(false);
       });
   };
 
+  // console.log(adminData)
   useEffect(() => {
+    // setLoading(true);
+    
     loadData(adminID);
+    console.log(data);
   }, []);
 
   const loginData = [

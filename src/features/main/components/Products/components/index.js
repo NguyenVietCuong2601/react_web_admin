@@ -57,6 +57,7 @@ function Products(props) {
         setLoading(true);
         if (warehouseId) {
             loadDataForWarehouse(warehouseId);
+            console.log("lol")
         }
         else loadData();
     }, []);
@@ -64,8 +65,7 @@ function Products(props) {
         if (debouncedSearchTerm) {
             const items = data.filter(
                 (item) =>
-                    item.username.toLowerCase().includes(debouncedSearchTerm) ||
-                    item.email.toLowerCase().includes(debouncedSearchTerm)
+                    item.name.toLowerCase().includes(debouncedSearchTerm) 
             );
             return setResult(items);
         }

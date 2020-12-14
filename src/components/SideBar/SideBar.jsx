@@ -30,19 +30,7 @@ export default function SideBar(props) {
       ? 2
       : path === "/home/products"
       ? 3
-      : path === "/home/warehouse"
-      // ? 2
-      // : path === "/home/subjects"
-      // ? 3
-      // : path === "/home/tutors"
-      // ? 4
-      // : path === "/home/needs"
-      // ? 5
-      // : path === "/home/feedbacks"
-      // ? 6
-      // : path === "home/notifications"
-      // ? 7
-      // : path === "home/courses" 
+      : path === "/home/warehouse" 
       && 4
   );
   console.log("key", selectedKey);
@@ -93,26 +81,7 @@ export default function SideBar(props) {
           <Menu.Item key="4" icon={<BankOutlined />}>
             <Link to="/home/warehouse">Warehouse</Link>
           </Menu.Item>
-          {/* <Menu.Item key="3" icon={<SnippetsOutlined />}>
-            <Link to="/home/subjects">Subjects</Link>
-          </Menu.Item>
-          <Menu.Item key="4" icon={<TeamOutlined />}>
-            <Link to="/home/tutors">Tutors</Link>
-          </Menu.Item>
-          <Menu.Item key="5" icon={<BookOutlined />}>
-            <Link to="/home/needs">Needs</Link>
-          </Menu.Item>
-          <Menu.Item key="6" icon={<FormOutlined />}>
-            <Link to="/home/feedbacks">Feedback</Link>
-          </Menu.Item>
-          <Menu.Item key="7" icon={<FormOutlined />}>
-            <Link to="/home/courses">Courses</Link>
-          </Menu.Item> */}
         </SubMenu>
-
-        {/* <Menu.Item key="8" icon={<BellOutlined />}>
-          <Link to="/home/notifications">Notifications</Link>
-        </Menu.Item> */}
       </Menu>
     </>
   );

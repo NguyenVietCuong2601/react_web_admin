@@ -42,11 +42,7 @@ function Products() {
         <div style={{ flex: 1, padding: "20px", textAlign: "left" }}>
           <Title level={2}>Products</Title>
         </div>
-        <div style={{ flex: 1, padding: "20px", textAlign: "right" }}>
-          <Button type="primary" onClick={showDrawer}>
-            <UserAddOutlined /> New account
-          </Button>
-        </div>
+        
       </div>
       <div
         style={{

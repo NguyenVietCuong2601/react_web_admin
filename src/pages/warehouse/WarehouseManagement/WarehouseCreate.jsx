@@ -145,32 +145,14 @@ function WarehouseCreate(props) {
           validateMessages={validateMessages}
         >
           <Form.Item
-            name="firstName"
-            label="First Name"
+            name="name"
+            label="Name"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            name="lastName"
-            label="Last Name"
-            rules={[{ required: true }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="username"
-            label="User Name"
-            rules={[{ min: 3, required: true }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="password"
-            label="Password"
-            rules={[{ min: 3, required: true }]}
-          >
-            <Input.Password />
+          <Form.Item>
+            
           </Form.Item>
           <Form.Item
             name="email"

@@ -21,7 +21,6 @@ const { Title, Paragraph } = Typography;
 export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [isAuth, setIsAuth] = useState(localStorage.getItem("token"));
-  const [data, setData] = useState([]);
   //TODO : GUI Login
   const openNotificationWithIcon = (type, message, description) => {
     notification[type]({
@@ -55,15 +54,16 @@ export default function Auth() {
         setLoading(false);
         setIsAuth(true);
         openNotificationWithIcon("success", "Success", "Login successfully !");
-        UserService.getDetailUser(localStorage.getItem("id"))
-        .then((res) => {
-          setData(res[0]);
-          localStorage.setItem("adminData", res[0].data)
-          console.log(res[0].data)
-        })
-        .catch((err) => {
-          console.log("error", err);
-        });
+        // UserService.getDetailUser(localStorage.getItem("id"))
+        // .then((res) => {
+          
+        //   localStorage.setItem("adminData", res[0].data)
+        //   console.log(res[0]);
+        //   console.log(res[0].data);
+        // })
+        // .catch((err) => {
+        //   console.log("error", err);
+        // });
       })
       .catch((err) => {
         setIsAuth(false);
@@ -92,28 +92,6 @@ export default function Auth() {
             </div>
             <div className="footer">
               <div className="social-contact">
-                {/* <div className="social-icon">
-                  <a
-                    href="https://www.facebook.com/hieumaxnho"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={"fa" + " fa-facebook"}
-                  >
-                    <FontAwesomeIcon icon={faFacebook} />
-                  </a>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.github.com/tuanconbu"
-                    className={"fa " + "fa-twitter"}
-                  >
-                    <FontAwesomeIcon icon={faGithub} />
-                  </a>
-                  <a href="#" className="fa fa-google">
-                    <FontAwesomeIcon icon={faGooglePlus} />
-                  </a>
-                </div> */}
-
                 <p style={{ color: "#424242" }}>
                   Telephone: (+84)123456789 / Hotline: 113
                 </p>

@@ -44,7 +44,7 @@ function Warehouse() {
         </div>
         <div style={{ flex: 1, padding: "20px", textAlign: "right" }}>
           <Button type="primary" onClick={showDrawer}>
-            <UserAddOutlined /> New account
+            <UserAddOutlined /> New warehouse
           </Button>
         </div>
       </div>
