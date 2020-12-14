@@ -14,30 +14,34 @@ const { Meta } = Card;
 
 export default function HeaderNav() {
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   // const [result, setResult] = useState([]);
   // const [loading, setLoading] = useState(true);
   //const token = JSON.parse(localStorage.getItem("token"));
   //const adminData = localStorage.getItem("adminData")
   // const decode = decodeToken(token)
-  // const loadData = () => {
-  //   UsersServices.getDetailUser(decode.id)
-  //     .then((res) => {
-  //       setData(res[0]);
-  //       setLoading(true);
-  //       setResult(res[0]);
-  //     })
-  //     .catch((err) => {
-  //       console.log("error", err);
-  //       setLoading(false);
-  //     });
-  // };
+  const adminID = localStorage.getItem("id");
+  const loadData = (id) => {
+    UsersServices.getDetailUser(id)
+      .then((res) => {
+        setData(res[0].data);
+        console.log(res[0]);
+        // setLoading(true);
+        // setResult(res[0]);
+      })
+      .catch((err) => {
+        console.log("error", err);
+        // setLoading(false);
+      });
+  };
 
   // console.log(adminData)
-  // useEffect(() => {
-  //   setLoading(true);
-  //   loadData();
-  // }, []);
+  useEffect(() => {
+    // setLoading(true);
+    
+    loadData(adminID);
+    console.log(data);
+  }, []);
 
   const loginData = [
     {
@@ -52,7 +56,7 @@ export default function HeaderNav() {
     <div>
       <Card style={{ width: 300, height: "auto", borderWidth: 1 }}>
         <Meta
-          avatar={<Avatar src={avatar} />}
+          avatar={<Avatar src={data ? data.image : avatar} />}
           title="ASAD"
           description="Administrator"
         />

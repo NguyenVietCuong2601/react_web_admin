@@ -21,7 +21,6 @@ const { Title, Paragraph } = Typography;
 export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [isAuth, setIsAuth] = useState(localStorage.getItem("token"));
-  const [data, setData] = useState([]);
   //TODO : GUI Login
   const openNotificationWithIcon = (type, message, description) => {
     notification[type]({
@@ -57,9 +56,10 @@ export default function Auth() {
         openNotificationWithIcon("success", "Success", "Login successfully !");
         // UserService.getDetailUser(localStorage.getItem("id"))
         // .then((res) => {
-        //   setData(res[0]);
+          
         //   localStorage.setItem("adminData", res[0].data)
-        //   console.log(res[0].data)
+        //   console.log(res[0]);
+        //   console.log(res[0].data);
         // })
         // .catch((err) => {
         //   console.log("error", err);
