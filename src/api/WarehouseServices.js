@@ -13,7 +13,7 @@ function getWarehouse() {
         //console.log(res)
         const data = [];
         data.push(res.data.data.warehouses);
-        console.log(data);
+        
         resolve(data);
 
       })
@@ -38,7 +38,7 @@ function getDetailWarehouse(id) {
         const data = [];
         data.push(res.data.data);
         resolve(data);
-        console.log(data);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +61,7 @@ function getUserWarehouse(id) {
         //console.log(res)
         const data = [];
         data.push(res.data.data.users);
-        console.log(data);
+        
         resolve(data);
 
       })
@@ -86,7 +86,7 @@ function getProductWarehouse(id) {
         //console.log(res)
         const data = [];
         data.push(res.data.data);
-        console.log(data);
+        
         resolve(data);
 
       })
@@ -111,7 +111,7 @@ function getHistoryWarehouse(id) {
         const data = [];
         data.push(res.data.data.histories);
         resolve(data);
-        console.log(data);
+        
       })
       .catch((error) => {
         console.log(error);
