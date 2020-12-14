@@ -1,4 +1,5 @@
 import axios from "axios";
+import decodeToken from '../helper/decodeToken'
 
 function getUsers() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -44,6 +45,8 @@ function getDetailUser(id) {
       });
   });
 }
+
+
 function createUser(createdUser) {
   return new Promise((resolve, reject) => {
     axios

@@ -19,6 +19,7 @@ function login(email, password) {
         }
  
         localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("id", permission.id)
         resolve(res);
       })
       .catch((err) => {

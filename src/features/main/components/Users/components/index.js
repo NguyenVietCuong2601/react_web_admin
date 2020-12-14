@@ -13,6 +13,7 @@ import {
 import UsersServices from "../../../../../api/UsersServices";
 import WarehouseServices from "../../../../../api/WarehouseServices";
 import useDebounce from "../../../../../hooks/useDebounce";
+import decodeToken from '../../../../../helper/decodeToken'
 function Users(props) {
   //local state
   const [selectedUser, setSelectedUser] = useState([]);
@@ -43,12 +44,14 @@ function Users(props) {
         setLoading(false);
         setResult(res[0]);
         console.log(data)
+        //console.log(decodeToken(token).id)
       })
       .catch((err) => {
         console.log("error", err);
         setLoading(false);
       });
   };
+
   useEffect(() => {
     setLoading(true);
     if (warehouseId) {
@@ -58,6 +61,7 @@ function Users(props) {
     //loadData();
 
   }, []);
+  
   useEffect(() => {
     if (debouncedSearchTerm) {
       const items = data.filter(
@@ -230,5 +234,4 @@ function Users(props) {
     </>
   );
 }
-
 export default Users;
