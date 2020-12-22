@@ -16,16 +16,6 @@ export default function Details(props) {
     <div>
       <Drawer
         width={640}
-        // title={
-        //   <div>
-        //     <Avatar
-        //       src={props.user.image}
-        //       icon={props.user.image === null && <UserOutlined />}
-        //     />{" "}
-        //     &nbsp;
-        //     {props.user.name}
-        //   </div>
-        // }
         placement="right"
         closable={false}
         onClose={props.onClose}
@@ -36,29 +26,6 @@ export default function Details(props) {
             <img className="photo-avatar" src={props.user.image} />
           </Col>
         </Row>
-        
-        {/* <Row>
-          <Col span={12}>
-            <DescriptionItem
-              title="Gender"
-              content={`${props.user.gender ? "Male" : "Female"}`}
-            />
-          </Col>
-          <Col span={12}>
-            <DescriptionItem
-              title="Age"
-              content={2020 - moment(props.user.dateOfBirth).format("YYYY")}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DescriptionItem
-              title="Birthday"
-              content={props.user.dateOfBirth}
-            />
-          </Col>
-        </Row> */}
         <Divider />
         <p className="site-description-item-profile-p">Contacts</p>
         <Row>

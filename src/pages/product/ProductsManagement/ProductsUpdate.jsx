@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Form, Input, Button, Radio, DatePicker, notification } from "antd";
 import { SendOutlined } from "@ant-design/icons";
-import UsersServices from "../../../api/UsersServices";
+//import ProductsServices from "../../../api/ProductsServices";
 import { useHistory } from "react-router-dom";
+import ProductsServices from "../../../api/ProductsServices";
 
-function UsersUpdate(props) {
+function ProductsUpdate(props) {
   const dateFormat = "YYYY/MM/DD";
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const _id = props.match.params.id;
+
   useEffect(() => {
-    UsersServices.getDetailUser(_id)
+    console.log("Update product")
+    ProductsServices.getDetailProducts(_id)
       .then((res) => {
         setData(res[0].data);
         setLoading(false);
@@ -41,13 +44,13 @@ function UsersUpdate(props) {
       range: "${label} must be between ${min} and ${max}",
     },
   };
-  const onUpdate = (id, updatedUser) => {
+  const onUpdate = (id, updatedProduct) => {
     setLoading(true);
-    UsersServices.updateUser(id, updatedUser)
+    ProductsServices.updateUser(id, updatedProduct)
       .then((res) => {
         setLoading(false);
         openNotificationWithIcon("success", "Success!", "Update successfully");
-        setTimeout(() => history.push("/home/users"), 2000);
+        setTimeout(() => history.push("/home/products"), 2000);
       })
       .catch((err) => {
         openNotificationWithIcon("error", "Error!", "Update failed");
@@ -55,8 +58,8 @@ function UsersUpdate(props) {
       });
   };
   const onFinish = (values) => {
-    const updatedUser = {
-      firstName: values.firstName,
+    const updatedProduct = {
+      name: values.name,
       lastName: values.lastName,
       address: values.address,
       email: values.email,
@@ -65,7 +68,7 @@ function UsersUpdate(props) {
       phoneNumber: values.phoneNumber,
       dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
     };
-    onUpdate(data.id, updatedUser);
+    onUpdate(data.id, updatedProduct);
   };
   if (data && data.authority === "ROLE_ADMIN") {
     return <div>Can't edit this user, try another one !</div>;
@@ -79,31 +82,32 @@ function UsersUpdate(props) {
           onFinish={onFinish}
           validateMessages={validateMessages}
           initialValues={{
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            gender: data.gender ? "male" : "female",
-            dateOfBirth: moment(data.dateOfBirth, "MMM Do YY"),
-            phoneNumber: data.phoneNumber,
-            address: data.address,
-            introduction: data.introduction,
+            name: data.name,
+            //lastName: data.lastName,
+            //email: data.email,
+            //gender: data.gender ? "male" : "female",
+            //dateOfBirth: moment(data.dateOfBirth, "MMM Do YY"),
+            //phoneNumber: data.phoneNumber,
+            //address: data.address,
+            note: data.note,
+            image: data.image
           }}
         >
           <Form.Item
-            name="firstName"
-            label="First Name"
+            name="name"
+            label="Name"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name="lastName"
-            label="Last Name"
+            name="note"
+            label="Note"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input.TextArea />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name="email"
             label="Email"
             rules={[{ type: "email", required: true }]}
@@ -141,7 +145,7 @@ function UsersUpdate(props) {
           </Form.Item>
           <Form.Item name="introduction" label="Introduction">
             <Input.TextArea />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
             <Button
               type="primary"
@@ -158,4 +162,4 @@ function UsersUpdate(props) {
     </div>
   );
 }
-export default UsersUpdate;
+export default ProductsUpdate;

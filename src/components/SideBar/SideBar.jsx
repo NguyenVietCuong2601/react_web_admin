@@ -39,7 +39,7 @@ export default function SideBar(props) {
   };
   return (
     <>
-      <div
+      {/* <div
         style={{
           height: "64px",
           display: "flex",
@@ -58,7 +58,7 @@ export default function SideBar(props) {
             <img src={logo} height="50px" width="50px" border="0" alt="" />
           </div>
         </Link>
-      </div>
+      </div> */}
 
       <Menu
         style={{ marginTop: 60 }}

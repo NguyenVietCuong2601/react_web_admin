@@ -165,7 +165,7 @@ function Products(props) {
                             icon={<FolderViewOutlined />}
                             onClick={() => onSelect(record)}
                         ></Button>
-                        <Link target="_top" to={`/home/users/${record.id}/edit`}>
+                        <Link target="_top" to={`/home/products/${record.id}/edit`}>
                             <Button type="primary" icon={<EditOutlined />} />
                         </Link>
                         <DeleteButton

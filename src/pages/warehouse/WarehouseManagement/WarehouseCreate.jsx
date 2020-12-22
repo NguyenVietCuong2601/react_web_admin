@@ -15,6 +15,7 @@ import WarehouseServices from "../../../api/WarehouseServices";
 import { storage } from "../../../firebase";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import "./WarehouseCreate.css";
+import CityServices from "../../../api/CityServices"
 
 const { Option } = Select;
 
@@ -23,6 +24,8 @@ function WarehouseCreate(props) {
   const [imgLoading, setImgLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [urlImg, setUrlImg] = useState("");
+  const [data, setData] = useState([]);
+  const [result, setResult] = useState([]);
 
   const dateFormat = "YYYY/MM/DD";
   const openNotificationWithIcon = (type, message, description) => {
@@ -60,14 +63,38 @@ function WarehouseCreate(props) {
     },
   };
 
+  const loadData = () => {
+    CityServices.getCity()
+    .then((res) => {
+      setData(res[0]);
+      setResult(res[0]);
+    })
+    .catch((err) => {
+      console.log("error", err);
+    });
+  }
+
   useEffect(() => {
-    if (image) handleUpload();
+    if (image) {
+      handleUpload();
+    }
+    else loadData()
   }, [image]);
+
+  const children = [];
+  for (let i = 0; i < data.length; i++){
+    children.push(<Option key={data[i].id}>{data[i].name}</Option>)
+  }
+  
+  
 
   const handleChange = (e) => {
     setUrlImg("");
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
+    } else
+    {
+      return console.log(`Selected: ${data[e].id}`);
     }
   };
 
@@ -151,9 +178,14 @@ function WarehouseCreate(props) {
           >
             <Input />
           </Form.Item>
-          <Form.Item>
-            
-          </Form.Item>
+          {/* <Form.Item 
+            name="city"
+            label="City"
+            rules={[{ required: true }]}>
+            <Select defaultValue={data[0] ? data[0].name : "none"} onChange={handleChange} style={{ width: 200}} >
+              {children}
+            </Select>
+          </Form.Item> */}
           <Form.Item
             name="email"
             label="Email"

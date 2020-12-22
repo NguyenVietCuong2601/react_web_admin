@@ -25,6 +25,11 @@ const routes = [
     component: "product/ProductsManagement/Products",
   },
   {
+    path: "products/:id/edit",
+    exact: true,
+    component: "product/ProductsManagement/ProductsUpdate"
+  },
+  {
     path: "warehouse",
     exact: true,
     component: "warehouse/WarehouseManagement/Warehouse",
