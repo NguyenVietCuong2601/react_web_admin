@@ -8,7 +8,7 @@ import ProductsServices from "../../../api/ProductsServices";
 import "./ProductsCreate.css";
 
 function ProductsUpdate(props) {
-  const dateFormat = "YYYY/MM/DD";
+  //const dateFormat = "YYYY/MM/DD";
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -18,7 +18,7 @@ function ProductsUpdate(props) {
     console.log("Update product")
     ProductsServices.getDetailProducts(_id)
       .then((res) => {
-        setData(res[0].data);
+        setData(res[0].data.data);
         setLoading(false);
       })
       .catch((err) => setLoading(false));
@@ -47,7 +47,7 @@ function ProductsUpdate(props) {
   };
   const onUpdate = (id, updatedProduct) => {
     setLoading(true);
-    ProductsServices.updateUser(id, updatedProduct)
+    ProductsServices.updateProduct(id, updatedProduct)
       .then((res) => {
         setLoading(false);
         openNotificationWithIcon("success", "Success!", "Update successfully");
@@ -61,13 +61,13 @@ function ProductsUpdate(props) {
   const onFinish = (values) => {
     const updatedProduct = {
       name: values.name,
-      lastName: values.lastName,
-      address: values.address,
-      email: values.email,
-      gender: values.gender === "male" ? 1 : 0,
-      introduction: values.introduction,
-      phoneNumber: values.phoneNumber,
-      dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
+      //lastName: values.lastName,
+      note: values.note,
+      image: data.image,
+      //gender: values.gender === "male" ? 1 : 0,
+      //introduction: values.introduction,
+      //phoneNumber: values.phoneNumber,
+      //dateOfBirth: moment(values.dateOfBirth, "YYYY/M/D"),
     };
     onUpdate(data.id, updatedProduct);
   };
@@ -75,8 +75,10 @@ function ProductsUpdate(props) {
     return <div>Can't edit this user, try another one !</div>;
   }
   return (
+    console.log("form"),
     <div>
       {data && (
+        console.log("in form"),
         <Form
           {...layout}
           name="basic"

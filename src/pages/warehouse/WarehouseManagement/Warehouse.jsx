@@ -42,11 +42,11 @@ function Warehouse() {
         <div style={{ flex: 1, padding: "20px", textAlign: "left" }}>
           <Title level={2}>Warehouse</Title>
         </div>
-        <div style={{ flex: 1, padding: "20px", textAlign: "right" }}>
+        {/* <div style={{ flex: 1, padding: "20px", textAlign: "right" }}>
           <Button type="primary" onClick={showDrawer}>
             <UserAddOutlined /> New warehouse
           </Button>
-        </div>
+        </div> */}
       </div>
       <div
         style={{

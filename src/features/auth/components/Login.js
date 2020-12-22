@@ -73,7 +73,7 @@ export default function Auth() {
       });
   };
   if (isAuth) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/home/users" />;
   }
   return (
     <div className="root-login">

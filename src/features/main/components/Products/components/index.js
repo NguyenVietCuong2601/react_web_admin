@@ -53,6 +53,16 @@ function Products(props) {
                 setLoading(false);
             });
     };
+    const loadProductDetailFromWarehouse = (id) => {
+        ProductsServices.getDetailProducts(id)
+        .then((res)=>{
+            setSelectedProducts(res[0].data.data)
+        })
+        .catch((err) => {
+            console.log("error", err);
+            
+        });
+    }
     useEffect(() => {
         setLoading(true);
         if (warehouseId) {
@@ -80,9 +90,12 @@ function Products(props) {
         });
     };
     const onSelect = (item) => {
-        console.log(item);
-        console.log(item.category.name)
+       if(warehouseId){
+        loadProductDetailFromWarehouse(item.id);
+       }
+       else {
         setSelectedProducts(item);
+       }
         setVisible(true);
     };
 

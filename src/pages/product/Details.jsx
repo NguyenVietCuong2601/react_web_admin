@@ -13,7 +13,7 @@ export default function Details(props) {
     </div>
   );
 
-  
+  console.log(props.products)
   return (
     <div>
       <Drawer
@@ -21,11 +21,11 @@ export default function Details(props) {
         title={
           <div>
             <Avatar
-              src={props.products.image}
-              icon={props.products.image === null && <UserOutlined />}
+              src={props.products?.image}
+              icon={ <UserOutlined />}
             />{" "}
             &nbsp;
-            {props.products.name}
+            {props.products?.name}
           </div>
         }
         placement="right"
@@ -37,7 +37,7 @@ export default function Details(props) {
           <Col>
             <DescriptionItem
               title="Product Name"
-              content={`${props.products.name}`}
+              content={`${props.products?.name}`}
             />
           </Col>
         </Row>
@@ -45,13 +45,13 @@ export default function Details(props) {
           <Col span={12}>
             <DescriptionItem
               title="Note"
-              content={`${props.products.note }`}
+              content={`${props.products?.note }`}
             />
           </Col>
           <Col span={12}>
             <DescriptionItem
               title="Create At"
-              content={moment(props.products.createdAt).format("YYYY-MM-DDTHH:mm:ss")}
+              content={moment(props.products?.createdAt).format("YYYY-MM-DDTHH:mm:ss")}
             />
           </Col>
         </Row>
@@ -59,7 +59,7 @@ export default function Details(props) {
           <Col>
             <DescriptionItem
               title="Update At"
-              content={moment(props.products.updatedAt).format("YYYY-MM-DDTHH:mm:ss")}
+              content={moment(props.products?.updatedAt).format("YYYY-MM-DDTHH:mm:ss")}
             />
           </Col>
         </Row>
@@ -67,12 +67,12 @@ export default function Details(props) {
         <p className="site-description-item-profile-p">Category</p>
         <Row>
           <Col span={12}>
-            <DescriptionItem title="Name" content={`${props.products.category ? props.products.category.name : "none"}`} />
+            <DescriptionItem title="Name" content={`${props.products?.category ? props.products.category.name : "none"}`} />
           </Col>
           <Col span={12}>
             <DescriptionItem
               title="Description"
-              content={`${props.products.category ? props.products.category.description : "none"}`}
+              content={`${props.products?.category ? props.products.category?.description : "none"}`}
             />
           </Col>
         </Row>
@@ -80,13 +80,13 @@ export default function Details(props) {
           <Col span={12}>
             <DescriptionItem
               title="Update At"
-              content={props.products.category ? moment(props.products.category.updatedAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
+              content={props.products?.category ? moment(props.products.category?.updatedAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
             />
           </Col>
           <Col span={12}>
             <DescriptionItem
               title="Create At"
-              content={props.products.category ? moment(props.products.category.createdAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
+              content={props.products?.category ? moment(props.products.category?.createdAt).format("YYYY-MM-DDTHH:mm:ss") : "none"}
             />
           </Col>
         </Row>

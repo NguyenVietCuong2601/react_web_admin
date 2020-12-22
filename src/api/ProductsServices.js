@@ -28,7 +28,7 @@ function getDetailProducts(id) {
   const token = JSON.parse(localStorage.getItem("token"));
   return new Promise((resolve, reject) => {
     axios
-      .get(`http://14.245.65.138:9090/api/edu/v1/user/details/${id}`, {
+      .get(`https://managewarehouse.herokuapp.com/products/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,6 +42,26 @@ function getDetailProducts(id) {
       .catch((error) => {
         console.log(error);
         reject(error);
+      });
+  });
+}
+function updateProduct(id, updatedProduct) {
+  const token = JSON.parse(localStorage.getItem("token"));
+  return new Promise((resolve, reject) => {
+    axios
+      .patch(`https://managewarehouse.herokuapp.com/products/${id}`, updatedProduct, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: { idUser: id },
+      })
+      .then((res) => {
+        resolve(res);
+        console.log(res)
+      })
+      .catch((error) => {
+        reject(error);
+        console.log(error);
       });
   });
 }
@@ -128,5 +148,6 @@ export default {
 //   deleteUser,
 //   changeStatus,
     getProducts,
-    getDetailProducts
+    getDetailProducts,
+    updateProduct
 };
