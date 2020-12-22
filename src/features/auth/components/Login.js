@@ -3,7 +3,7 @@ import { Form, Input, Button, Typography, Image, notification } from "antd";
 
 import { Redirect } from "react-router-dom";
 
-import logo from "../../../assets/logo.png";
+import logo2 from "../../../assets/logo2.png";
 import reactLogo from "../../../assets/react_ts.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -90,18 +90,18 @@ export default function Auth() {
                 Welcome to <strong>Warehouse Management</strong> administrator page.
               </Paragraph>
             </div>
-            <div className="footer">
+            {/* <div className="footer">
               <div className="social-contact">
                 <p style={{ color: "#424242" }}>
                   Telephone: (+84)123456789 / Hotline: 113
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="form_content">
             <div className="logo">
-              <Image src={logo} width="60px" height="60px" />
+              <Image src={logo2} width="100px" height="100px" />
               <h1 className="title">WAREHOUSE MANAGEMENT</h1>
             </div>
             <Form

@@ -5,6 +5,7 @@ import { SendOutlined } from "@ant-design/icons";
 //import ProductsServices from "../../../api/ProductsServices";
 import { useHistory } from "react-router-dom";
 import ProductsServices from "../../../api/ProductsServices";
+import "./ProductsCreate.css";
 
 function ProductsUpdate(props) {
   const dateFormat = "YYYY/MM/DD";
